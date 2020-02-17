@@ -8,6 +8,8 @@ The new programming language I want to learn is assembly for the x86-64 instruct
 
 The bulk of my information will come from [this](https://www.youtube.com/watch?v=VQAKkuLL31g&list=PLetF-YjXm-sCH6FrTz4AQhfH6INDQvQSn) Youtube guide. My plan is to watch every video so I can provide a summary of the video and to implement my own version of code that was treated during the video.
 
+For this assignment to be a success I will do a challenge: implement the quicksort algorithm in assembly.
+
 During this assignment I will use the following tools:
 - Debian 10.3 as operation system.
 - NASM as assembler
