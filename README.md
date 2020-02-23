@@ -84,3 +84,26 @@ Notice the eax register. It's part of the rax register and half it's size. The 1
 ![64-bit register](https://github.com/CreatieveNaam/po-paradigma/blob/master/64-bit%20register.png "rax register")
 
 ## Syscall
+A syscall is when a program requests a service from the kernel. Every syscall has an ID associated with it. A syscall takes arguments. So when we use a syscall it has a number of inputs. Inputs are based on the value stored in the register.
+
+argument | register 
+--- | ---
+ID | rax
+1 | rdi
+2 | rsi
+3 | rdx
+4 | r10
+5 | r8
+6 | r9
+
+What we see in the table is that the ID of the syscall is stored in the rax register. The first argument in the rdi register and so on. So when you want to use a syscall you first need to store the ID value of the syscall in the rax register, the value of the first argument in the rdi register and so on. [This](http://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/) table shows all syscall for the x64 instruction set and which value should be stored in which register.
+
+Let's use sys_write as example. We want to write "Hello, World!\n" to the screen. If we look at the syscall table we see that the ID associated with sys_write is 1. So we want to store 1 in the rax register. We do this using the follow command: `mov rax, 1` (mov stand for move). We need to store the file descriptor in the rdi register. There are three file descriptors:
+
+description | number 
+--- | ---
+stdin | 0
+stdout | 1
+stderr | 2
+
+We want to write to the screen so as file descriptor we choose 1 (what the other ones mean will come later). We do this using the following command: `mov rdi, 1`. In the rsi register we want to store the pointer to memory address that holds the text "Hello, World!\n". If we take a look at the code of the "Hello World!" program we see the following line of code: `text db "Hello, World!",10`. We know that when we use 'text' in the code, the compiler will determine the actual location in memory of this data. So if we want to store the pointer to the memory address that holds the text "Hello, World!\n" in the rsi register we can use the following command: `mov rsi, text`. The last argument is the length of the string we want to print. In this case the length of our string is 14, so we want to store the value 14 in the rdx register. We do this using the following command `mov rdx, 14`. The last thing we need to do is make the syscall. We do this using the following command: `syscall`. Now we should have a program that writes "Hello World!" to screen, right?
