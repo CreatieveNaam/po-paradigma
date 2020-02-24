@@ -204,3 +204,33 @@ mov rax, [rbx]
 
 ## Calls
 A call is essentially the same as a jump. However when a call is used, the original position the call was made can be returned to using `ret`. 
+
+# Getting input
+Source video: https://www.youtube.com/watch?v=VAy4FGHDx1I
+
+In this chapter we got to know how to read user input. 
+
+# Input
+The code below is used for reading input from the user. Note that this code is purely for demonstration since it does nothing with the input. What is the purpose of each line of code?
+
+```
+section .bss
+	name resb 16
+	
+_start:
+	mov rax, 0
+	mov rdi, 0
+	mov rsi, name
+	mov rdx, 16
+	syscall
+```
+
+The line of code `name resb 16` reserves 16 bytes for the lable 'name'. 
+
+The line of code `mov rax, 0` means we are going to use a system call called sys_read. 
+
+The line of code `mov rdi, 0` means we want to get input. 
+
+The line of code `mov rsi, name` stores the input in the lable 'name'
+
+So that's how we get input. As an example I made a [program](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/input.asm) where user input gets repeated by the program.
