@@ -18,6 +18,7 @@ During this assignment I will use the following tools:
 
 # Compiling and executing
 Source video: https://youtu.be/VQAKkuLL31g
+Code I made for this chapter: https://github.com/CreatieveNaam/po-paradigma/blob/master/util/auto-link
 
 To be able to execute assembly code we need a few things. First we need an x64 linux distribution. I use Debian since the guide also uses Debian. We also need an assembler. An assembler is basically a compiler for assembly code. I use NASM as assembler since the guide also uses NASM. To make a file and edit it we need an editor. For now I am using nano as editor.
 
@@ -31,6 +32,7 @@ To execute the file, we can use the following command: `./hello`.
 
 # Hello, World
 Source video: https://youtu.be/BWRR3Hecjao
+Code I made for this chapter: https://github.com/CreatieveNaam/po-paradigma/blob/master/code/basicASM.asm
 
 Now that we are able to compile and execute code we can start with the actual fun stuff: writing code. The code below is prints out "Hello, World".
 
@@ -52,6 +54,7 @@ _start:
 	mov rdi, 0
 	syscall
  ```
+ Let's take a look what the code means.
  
  ## Defining Bytes 
  So what does `text db "Hello, World!",10` mean?
@@ -134,7 +137,67 @@ stderr | 2
 
 We want to write to the screen so as file descriptor we choose 1 (what the other ones mean will come later). We do this using the following command: `mov rdi, 1`. In the rsi register we want to store the pointer to memory address that holds the text "Hello, World!\n". If we take a look at the code of the "Hello World!" program we see the following line of code: `text db "Hello, World!",10`. We know that when we use 'text' in the code, the compiler will determine the actual location in memory of this data. So if we want to store the pointer to the memory address that holds the text "Hello, World!\n" in the rsi register we can use the following command: `mov rsi, text`. The last argument is the length of the string we want to print. In this case the length of our string is 14, so we want to store the value 14 in the rdx register. We do this using the following command `mov rdx, 14`. The last thing we need to do is make the syscall. We do this using the following command: `syscall`. 
 
-## Trying it myself
-[This](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/firstAssemblyProgram.asm) code is my take on everything that was treated during the video. Nothing too fancy. I did get annoyed with compiling and linking so I made a [bash script](https://github.com/CreatieveNaam/po-paradigma/blob/master/util/auto-link) to do it for me.
+# Jumps, Calls, Comparisons
+Source video: https://youtu.be/busHtSyx2-w
+Code I made for this chapter: https://github.com/CreatieveNaam/po-paradigma/blob/master/code/controlFlow.asm
 
+In this chapter we get to know what flags, pointers, control flow, jumps, conditional jumps and calls are. We will also learn  how to do comparisions.
 
+## Flags
+Flags, like registers, hold data. This data is either a one (true) or a zero (false). Flags are part of a larger register called the flags register. 
+
+## Pointers
+Pointers are also registers that hold data. Pointer points to data. That means they hold the memory address of the data (not the value of the data). There are a bunch of different pointers but for know it's important to know what the rip pointer is. The rip pointer, or index pointer, points to the next address to be executed in the control flow.
+
+## Control flow
+By default all code runs from top to bottom. The direction a program flows is called the control flow. The rip register holds the address of the next instruction to be executed. After each instruction the rip register is incremented so that it holds the address of the next instruction to be executed, making the control flow, flow from top to bottom.
+
+## Jumps
+Jumps van be used to jump to different parts of code based on lables. They are used to divert program flow. The format of the jump is `jmp label`
+
+## Comparisons
+Comparisons allow programs to be able to take different paths based on certain conditions. The format of a comparison is `jmp register, register` or `jmp register, value`. After a comparision, flags are set.
+
+## Conditional Jumps
+After a comparison is made, a conditional jump can be made. Conditional jumps are based on the status of the flags. In code, conditional jumps are written just like 'normal' jumps, however `jmp` is replaced by the symbol for the conditional jump. The table below shows all jump symbols. 
+
+Jump symbol (signed) | Jump symbol (unsigned) | Results of cmp a,b
+--- | --- | ---
+je | - | a = b
+jne | - | a != b
+jg | ja | a > b
+jge | jae | a >= b
+jl | jb | a < b
+jle | jbe | a <= b
+jz | - | a = 0
+jnz | - | a != 0
+jo | - | Overflow occurred
+jno | - | Overflow did not occur
+js | - | Jump if signed
+jns | - | Jump if not signed
+
+The following code will jump to the address of label \_doX if and only if the value in the rax register equals 25:
+```
+cmp rax, 25
+je _doX
+```
+
+The following code will jump to the address of label \_doY if and only if the value in the rax register is greater than the value in the rbx register:
+```
+cmp rax, rbx
+jg _doY
+```
+
+## Registers as pointers
+The default registers can be treated as pointers. To treat a register as pointer, surround the register name with square brackets, such as \[rax]. The following code loads the value in the rbx register into the rax register:
+```
+mov rax, rbx
+```
+
+The following code loads the value the rbx is pointing to into the rax register:
+```
+mov rax, [rbx]
+```
+
+## Calls
+A call is essentially the same as a jump. However when a call is used, the original position the call was made can be returned to using `ret`. 
