@@ -53,9 +53,35 @@ _start:
 	syscall
  ```
  
- So what does everything mean? We start with the `text db "Hello, World!",10`
+ ## Defining Bytes 
+ So what does `text db "Hello, World!",10` mean?
  
- `db` stands for "define bytes". This means that we are going to define bytes of data. `"Hello, World!",10` is the bytes of data we are defining. The "10" is a newline character. `text` is the name assigned to the address in memory that this data is located in. When we use "text" in the code, when the code is compiled, the compiler will determine the actual location in memory of this data and replace all instances of "text" with that memory address. So the way i see it is that `text db "Hello, World!",10` is the equivalent of `String text = "Hello, World! \n"`.
+`db` stands for "define bytes". This means that we are going to define bytes of data. 
+ 
+`"Hello, World!",10` is the bytes of data we are defining. The "10" is a newline character. 
+ 
+`text` is the name assigned to the address in memory that this data is located in. When we use "text" in the code, when the code is compiled, the compiler will determine the actual location in memory of this data and replace all instances of "text" with that memory address.
+
+## Sections
+So what do the code `section .data` and `section .text` mean?
+
+Well, there are three types of sections in assembly files. There is a .data section where all data is defined before compilation. We basically define memory for future use. 
+
+There is a .text where all the code goes.
+
+Lastly there is a .bss section where data is allocated for future use. We do not use it in the Hello World code but the .bss section often gets used for reservering bytes of memory for user input.
+
+## Lables
+So what does the code `_start:` mean?
+
+Well, `_start:` is called a lable. A lable is used to lable a part of code. Upon compilation the compiler will calculate the location in which the lable will sit in memory. Any time the lable is used afterwards, that name is replaced by the location in memory of the compiler. 
+
+The `_start:` lable is essential for all programs. When the program is compiled and executed, it is first executed at the location of `_start:`.
+
+## Global
+So what does the code `global _start` mean?
+
+The word `global` is used when we want the linker to be able to know the address of some label. The object file generated will containt a link to every label declared `global`. In this case, we have to declare `_start` as global since it is required for the code to be propery linked.
  
  ## Registers
 To understand the rest of the code, we first need to understand registers. Registers are a part of the processor that temporarily holds memory. In the x86_64 architecture, registers hold 64 bits. Below is a list of registers in the x86_64 architecture. 
@@ -106,4 +132,4 @@ stdin | 0
 stdout | 1
 stderr | 2
 
-We want to write to the screen so as file descriptor we choose 1 (what the other ones mean will come later). We do this using the following command: `mov rdi, 1`. In the rsi register we want to store the pointer to memory address that holds the text "Hello, World!\n". If we take a look at the code of the "Hello World!" program we see the following line of code: `text db "Hello, World!",10`. We know that when we use 'text' in the code, the compiler will determine the actual location in memory of this data. So if we want to store the pointer to the memory address that holds the text "Hello, World!\n" in the rsi register we can use the following command: `mov rsi, text`. The last argument is the length of the string we want to print. In this case the length of our string is 14, so we want to store the value 14 in the rdx register. We do this using the following command `mov rdx, 14`. The last thing we need to do is make the syscall. We do this using the following command: `syscall`. Now we should have a program that writes "Hello World!" to screen, right?
+We want to write to the screen so as file descriptor we choose 1 (what the other ones mean will come later). We do this using the following command: `mov rdi, 1`. In the rsi register we want to store the pointer to memory address that holds the text "Hello, World!\n". If we take a look at the code of the "Hello World!" program we see the following line of code: `text db "Hello, World!",10`. We know that when we use 'text' in the code, the compiler will determine the actual location in memory of this data. So if we want to store the pointer to the memory address that holds the text "Hello, World!\n" in the rsi register we can use the following command: `mov rsi, text`. The last argument is the length of the string we want to print. In this case the length of our string is 14, so we want to store the value 14 in the rdx register. We do this using the following command `mov rdx, 14`. The last thing we need to do is make the syscall. We do this using the following command: `syscall`. 
