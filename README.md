@@ -18,6 +18,7 @@ During this assignment I will use the following tools:
 
 # Compiling and executing
 Source video: https://youtu.be/VQAKkuLL31g
+
 Code I made for this chapter: https://github.com/CreatieveNaam/po-paradigma/blob/master/util/auto-link
 
 To be able to execute assembly code we need a few things. First we need an x64 linux distribution. I use Debian since the guide also uses Debian. We also need an assembler. An assembler is basically a compiler for assembly code. I use NASM as assembler since the guide also uses NASM. To make a file and edit it we need an editor. For now I am using nano as editor.
@@ -32,6 +33,7 @@ To execute the file, we can use the following command: `./hello`.
 
 # Hello, World
 Source video: https://youtu.be/BWRR3Hecjao
+
 Code I made for this chapter: https://github.com/CreatieveNaam/po-paradigma/blob/master/code/basicASM.asm
 
 Now that we are able to compile and execute code we can start with the actual fun stuff: writing code. The code below is prints out "Hello, World".
@@ -139,6 +141,7 @@ We want to write to the screen so as file descriptor we choose 1 (what the other
 
 # Jumps, Calls, Comparisons
 Source video: https://youtu.be/busHtSyx2-w
+
 Code I made for this chapter: https://github.com/CreatieveNaam/po-paradigma/blob/master/code/controlFlow.asm
 
 In this chapter we get to know what flags, pointers, control flow, jumps, conditional jumps and calls are. We will also learn  how to do comparisions.
