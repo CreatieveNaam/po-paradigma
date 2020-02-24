@@ -1,3 +1,5 @@
+; Basic program to show "My first assembly program" to the screen
+
 section .data
 	message db "My first assembly program",10
 

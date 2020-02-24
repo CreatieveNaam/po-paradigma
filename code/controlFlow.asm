@@ -1,3 +1,6 @@
+; This is my second assembly 'program'. In this program I wanted to use (conditional) jumps, calls 
+; and comparisons. I also wanted to get to know the control flow. 
+
 section .data
 	first db "My first assembly program",10
 	second db "My second assembly program!",10
@@ -10,7 +13,7 @@ _start:
 	mov rbx, 25 ; Move 25 into rbx register
 	mov rax, rbx ; Move the value in rbx (25) into rax
 	cmp rax, rbx ; Compare rax (25) to rbx (25)
-	je _printSecond ; This should be executed since the value in rax (25) equals 25
+	je _printSecond ; This should be executed since the value in rax (25) equals the value of rbx (25)
 	jmp _printFirst ; This should not be executed since we jumped to the _printSecond lable.
 
 _printSecond:
