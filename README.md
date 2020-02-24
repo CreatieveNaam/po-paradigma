@@ -107,7 +107,7 @@ r15b | r15w | r15d | r15
 
 Notice the eax register. It's part of the rax register and half it's size. The 16-bit ax register is part of the eax register and half it's size and the 8-bit register al is part of the ax register and half it's size. So if we use the al register we are modifying the lower 8 bits of the rax register. The diagram below visualises the rax register.
 
-![64-bit register](https://github.com/CreatieveNaam/po-paradigma/blob/master/64-bit%20register.png "rax register")
+![64-bit register](https://github.com/CreatieveNaam/po-paradigma/blob/master/img/64-bit%20register.png "rax register")
 
 ## Syscall
 A syscall is when a program requests a service from the kernel. Every syscall has an ID associated with it. A syscall takes arguments. So when we use a syscall it has a number of inputs. Inputs are based on the value stored in the register.
@@ -133,3 +133,8 @@ stdout | 1
 stderr | 2
 
 We want to write to the screen so as file descriptor we choose 1 (what the other ones mean will come later). We do this using the following command: `mov rdi, 1`. In the rsi register we want to store the pointer to memory address that holds the text "Hello, World!\n". If we take a look at the code of the "Hello World!" program we see the following line of code: `text db "Hello, World!",10`. We know that when we use 'text' in the code, the compiler will determine the actual location in memory of this data. So if we want to store the pointer to the memory address that holds the text "Hello, World!\n" in the rsi register we can use the following command: `mov rsi, text`. The last argument is the length of the string we want to print. In this case the length of our string is 14, so we want to store the value 14 in the rdx register. We do this using the following command `mov rdx, 14`. The last thing we need to do is make the syscall. We do this using the following command: `syscall`. 
+
+## Trying it myself
+[This](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/firstAssemblyProgram.asm) code is my take on everything that was treated during the video. Nothing too fancy. I did get annoyed with compiling and linking so I made a [bash script](https://github.com/CreatieveNaam/po-paradigma/blob/master/util/auto-link) to do it for me.
+
+
