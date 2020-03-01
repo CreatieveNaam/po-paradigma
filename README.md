@@ -295,4 +295,4 @@ To pop a value of the stack use `pop reg`
 
 To peek on the stack use `mov reg, [rsp]`
 
-Usually in places where you can use registers, you can also use pointers. Such as, instead of `pop reg` we can use `pop label` to pop a value off the stack directly into a position in memory.
+Usually in places where you can use registers, you can also use pointers. Such as, instead of `pop reg` we can use `pop [label]` to pop a value off the stack directly into a position in memory.
