@@ -208,7 +208,7 @@ A call is essentially the same as a jump. However when a call is used, the origi
 # Getting input
 Source video: https://www.youtube.com/watch?v=VAy4FGHDx1I
 
-In this chapter we got to know how to read user input. 
+In this chapter we get to know how to read user input. 
 
 # Input
 The code below is used for reading input from the user. Note that this code is purely for demonstration since it does nothing with the input. What is the purpose of each line of code?
@@ -234,3 +234,65 @@ The line of code `mov rdi, 0` means we want to get input.
 The line of code `mov rsi, name` stores the input in the lable 'name'
 
 So that's how we get input. As an example I made a [program](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/input.asm) where user input gets repeated by the program.
+
+
+# Math operations, displaying a digit and the Stack
+Source video: https://www.youtube.com/watch?v=NFv7l3wQsZ4
+
+In this chapter we get to know how to do math operations, display a digit and use the Stack. You should know what the [Stack](https://www.cs.cmu.edu/~adamchik/15-121/lectures/Stacks%20and%20Queues/Stacks%20and%20Queues.html) is before you read this chapter. You should also be familiar with the ASCII [table](https://i.stack.imgur.com/iCOov.gif).
+
+## Math operations
+Math operations are used to mathematically manipulate register. The syntax of a math operations is typically `operation register, value/register`. The first register is the subject op the operation. The table below shows every math operation.
+
+Operation | Operation Name | Operation Name (signed) | Description
+--- | --- | --- | --- 
+add | add a, b | - | a = a + b
+substract | sub a, b | - | a = a - b
+multiply | mul reg | imul reg | rax = rax * reg
+divide | div reg | idiv reg | rax = rax / reg
+negate | neg reg | - | reg = -reg
+increment | inc reg | - | reg = reg + 1
+decrement | dec reg | - | reg = reg - 1
+add carry | adc a, b| - | a = a+b+CF
+substract carry | sbb a, b | - | a = a-b-CF
+
+When using `adc` or `sbb` we add or substract but we also add the [carry flag](http://teaching.idallen.com/dat2343/10f/notes/040_overflow.txt)
+
+## Displaying a digit
+The following code can be used to display a digit between 0 and 9. What does each line of code mean?
+```
+section .data
+	digit db 0,10
+	
+... 
+
+_printRAXDigit:
+	add rax, 48
+	mov [digit], al
+	mov rax, 1
+	mov rdi, 1
+	mov rsi, digit
+	mov rdx, 2
+	syscall
+	ret
+```
+The code `add rax, 48` adds 48 to the rax register. So if the value in rax was 0, it is now 48. If we look at the ASCII table we can see that 48 is the value of the "0" character.
+
+The code `mov [digit], al` moves the lower byte of the rax register into the memory address 'digit'. 'Digit' is actually defined with two bytes (0 and 10). Since we are only loading the lower byte of the rax register into 'digit', it only overwrites the first byte and does not affect the newline character.
+
+The code after `mov [digit], al` prints the two bytes to the screen and returns to the position the subroutine was called from. 
+
+This subroutine can be used to display a digit between 0-9 by7 loading that digit into the rax register then calling the subroutine, like so:
+```
+mov rax, 7
+call _printRAXDigit
+```
+
+## The Stack
+To push a value onto the stack use `push reg/value`
+
+To pop a value of the stack use `pop reg`
+
+To peek on the stack use `mov reg, [rsp]`
+
+Usually in places where you can use registers, you can also use pointers. Such as, instead of `pop reg` we can use `pop label` to pop a value off the stack directly into a position in memory.
