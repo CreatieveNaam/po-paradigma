@@ -296,3 +296,8 @@ To pop a value of the stack use `pop reg`
 To peek on the stack use `mov reg, [rsp]`
 
 Usually in places where you can use registers, you can also use pointers. Such as, instead of `pop reg` we can use `pop [label]` to pop a value off the stack directly into a position in memory.
+
+# Subroutine to print Strings.
+Source video: https://www.youtube.com/watch?v=Fz7Ts9RN0o4.
+
+This time I am going to do it diffrently. I got annoyed with typing so much in the readme.md and I wanted to code. So I just explained the code using comments. Code of this video with explanation can be found [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/printStrings.asm)
