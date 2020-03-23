@@ -1,4 +1,6 @@
 #!/bin/bash
+a=$(ls $1 | sed 's/.asm//g')
+nasm -f elf64 -o $a.o $a.asm
+ld $a.o -o $a 
+rm *.o
 
-nasm -f elf64 -o $1.o $1.asm
-ld $1.o -o $1 
