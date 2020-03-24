@@ -301,3 +301,10 @@ Usually in places where you can use registers, you can also use pointers. Such a
 Source video: https://www.youtube.com/watch?v=Fz7Ts9RN0o4.
 
 This time I am going to do it diffrently. I got annoyed with typing so much in the readme.md and I wanted to code. So I just explained the code using comments. Code of this video with explanation can be found [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/printStrings.asm)
+
+# Subroutine to print Integers.
+Source video: https://www.youtube.com/watch?v=Fz7Ts9RN0o4
+
+Just as last time, I explain the code in the file. See explanation [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/printIntegers.asm)
+
+
