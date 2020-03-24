@@ -308,3 +308,10 @@ Source video: https://www.youtube.com/watch?v=Fz7Ts9RN0o4
 Just as last time, I explain the code in the file. See explanation [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/printIntegers.asm)
 
 
+# Arrays
+Sources: [This](https://www.tutorialspoint.com/assembly_programming/assembly_arrays.htm) tutorial, [this](https://www.youtube.com/watch?v=bM0_HRkM_CE) video.
+
+The video tutorial doesn't teach the use of arrays but I think it's crucial to use arrays for implementing insertion sort. So defining an array is almost the same as defining one 'variable'. Instead of `num db 52` for defining one 'variable' we use `num db 52, 53` for defining an array. To see how I printed the array see [this](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/arrays.asm) file.
+
+# IDE
+I got sick of using nano as a IDE so I downloaded [SASM](https://dman95.github.io/SASM/english.html) as IDE. This makes it alot easier write assembly code.
