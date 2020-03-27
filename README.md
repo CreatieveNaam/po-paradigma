@@ -8,28 +8,12 @@ The new programming language I want to learn is assembly for the x86-64 instruct
 
 The bulk of my information will come from [this](https://www.youtube.com/watch?v=VQAKkuLL31g&list=PLetF-YjXm-sCH6FrTz4AQhfH6INDQvQSn) Youtube guide. My plan is to watch every video so I can provide a summary of the video and to implement my own version of code that was treated during the video.
 
-For this assignment to be a success I will do a challenge: implement the quicksort algorithm in assembly.
+For this assigment to be a success I will do a challenge: implement the insertionsort algorithm in assembler x64. My assignment will be a success when the assembler code is able to sort an array from low to high using the insertionsort algoritm. I think this challenge is perfect to implement in assembler since assembler code can produce much faster code (and fast sorting is what we want) then high(er) level languagues (Kent State University, z.d).
 
 During this assignment I will use the following tools:
 - Debian 10.3 as operation system.
 - NASM as assembler
-- ld from the binutils package as linker
-- Currently nano as 'IDE' but I will probably change this..
-
-# Compiling and executing
-Source video: https://youtu.be/VQAKkuLL31g
-
-Code I made for this chapter: https://github.com/CreatieveNaam/po-paradigma/blob/master/util/auto-link
-
-To be able to execute assembly code we need a few things. First we need an x64 linux distribution. I use Debian since the guide also uses Debian. We also need an assembler. An assembler is basically a compiler for assembly code. I use NASM as assembler since the guide also uses NASM. To make a file and edit it we need an editor. For now I am using nano as editor.
-
-Now we are ready to write assembly code. The first thing we need to do is make a file with an .asm extension. To make a file with the name 'hello' and an .asm extension we can use the following command: `nano hello.asm`. In this file we can write the assembly code. 
-
-Once we are done writing code we need to compile the code. This can be done using the following command: `nasm -f elf64 -o hello.o hello.asm`. Elf64 is the assembly program format, hello.o is the output file and hello.asm is the input file. This command will produce an non executable object file called 'hello.o'. 
-
-To make the file an excutable we need to link it using an linker. The linker I use is ld. The command for linking is: `ld hello.o -o hello`. This will produce an excutable file called 'hello'.
-
-To execute the file, we can use the following command: `./hello`.
+- [SASM](https://dman95.github.io/SASM/english.html) as IDE
 
 # Hello, World
 Source video: https://youtu.be/BWRR3Hecjao
@@ -313,5 +297,14 @@ Sources: [This](https://www.tutorialspoint.com/assembly_programming/assembly_arr
 
 The video tutorial doesn't teach the use of arrays but I think it's crucial to use arrays for implementing insertion sort. So defining an array is almost the same as defining one 'variable'. Instead of `num db 52` for defining one 'variable' we use `num db 52, 53` for defining an array. To see how I printed the array see [this](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/arrays.asm) file.
 
-# IDE
-I got sick of using nano as a IDE so I downloaded [SASM](https://dman95.github.io/SASM/english.html) as IDE. This makes it alot easier write assembly code.
+# Insertion sort
+My challenge was to implement insertionsort in assembler. Well I did it. Insertionsort in assembler can be found [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/insertionsort.asm). 
+
+# Quicksort
+I also implemented quicksort in assembler, see the code [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/quicksort.asm)
+
+
+# Sources
+Kent State University. (z.d.). *The Assembly Language Level*. Geraadpleeg op 27 maart 2020, van http://www.personal.kent.edu/~aguercio/CS35101Slides/Tanenbaum/CA_Ch07.pdf
+
+
