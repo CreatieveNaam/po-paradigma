@@ -1,4 +1,4 @@
-; Quicksort in assembler x64 using the median of three pivot.
+; Quicksort in assembler x64 using the median of three pivot. (This code ain't optimized yet)
 
 section .data
     arr dq 50, 51, 49, 47, 51, 52, 58, 59, 4
