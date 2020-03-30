@@ -295,7 +295,10 @@ Just as last time, I explain the code in the file. See explanation [here](https:
 # Arrays
 Sources: [This](https://www.tutorialspoint.com/assembly_programming/assembly_arrays.htm) tutorial, [this](https://www.youtube.com/watch?v=bM0_HRkM_CE) video.
 
-The video tutorial doesn't teach the use of arrays but I think it's crucial to use arrays for implementing insertion sort. So defining an array is almost the same as defining one 'variable'. Instead of `num db 52` for defining one 'variable' we use `num db 52, 53` for defining an array. To see how I printed the array see [this](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/arrays.asm) file.
+The video tutorial doesn't teach the use of arrays but I think it's crucial to use arrays for implementing insertion sort. Defining an array is almost the same as defining one 'variable'. Instead of `num db 52` for defining one 'variable' we use `num db 52, 53` for defining an array. To see how I printed the array see [this](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/arrays.asm) file.
+
+I noticed it became very diffult to debug my code so i changed my IDE from nano to SASM. Instead of `global _start` SASM needs a `global _main`. So from now on I will use main instead of start.
+
 
 # Insertion sort
 My challenge was to implement insertionsort in assembler. Well I did it. Insertionsort in assembler can be found [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/insertionsort.asm). 
