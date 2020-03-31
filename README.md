@@ -128,7 +128,7 @@ Source video: https://youtu.be/busHtSyx2-w
 
 Code I made for this chapter: https://github.com/CreatieveNaam/po-paradigma/blob/master/code/controlFlow.asm
 
-In this chapter we get to know what flags, pointers, control flow, jumps, conditional jumps and calls are. We will also learn  how to do  comparisons.
+In this chapter we get to know what pointers, control flow, jumps, conditional jumps and calls are. We will also learn  how to do comparisons.
 
 ## Pointers
 Pointers are also registers that hold data. Pointer points to data. That means they hold the memory address of the data (not the value of the data). There are a bunch of different pointers but for know it's important to know what the rip pointer is. The rip pointer, also known as the index pointer, points to the next address to be executed in the control flow.
