@@ -8,7 +8,7 @@ The new programming language I want to learn is assembly for the x86-64 instruct
 
 The bulk of my information will come from [this](https://www.youtube.com/watch?v=VQAKkuLL31g&list=PLetF-YjXm-sCH6FrTz4AQhfH6INDQvQSn) Youtube guide. 
 
-For this assignment to be a success, I will do a challenge: implement the insertion sort algorithm in assembler x64. My assignment will be a success when the assembler code is able to sort an array from low to high using the insertion sort algorithm. I think this challenge is perfect to implement in assembler since assembler code can produce much faster code (and fast sorting is what we want) then high(er) level languagues (Kent State University, z.d).
+For this assignment to be a success, I will do a challenge: implement the insertion sort algorithm in assembler x64. My assignment will be a success when the assembly code is able to sort an array from low to high using the insertion sort algorithm. I think this challenge is perfect to implement in assembler since assembler code can produce much faster code (and fast sorting is what we want) then high(er) level languagues (Kent State University, z.d).
 
 During this assignment I will use the following tools:
 - Debian 10.3 as operation system.
@@ -20,7 +20,7 @@ Source video: https://youtu.be/BWRR3Hecjao
 
 Code I made for this chapter: https://github.com/CreatieveNaam/po-paradigma/blob/master/code/basicASM.asm
 
-Now that we are able to compile and execute code we can start with the actual fun stuff: writing code. The code below is prints out "Hello, World".
+The code below is prints out "Hello, World".
 
 ```
 section .data
@@ -70,7 +70,7 @@ The `_start:` label is essential for all programs. When the program is compiled 
 ## Global
 So what does the code `global _start` mean?
 
-The word `global` is used when we want the linker to be able to know the address of some label. The object file generated will contain a link to every label declared `global`. In this case, we have to declare `_start` as global since it is required for the code to be properly  linked.
+The word `global` is used when we want the linker to be able to know the address of some label. The object file generated during compiling will contain a link to every label declared `global`. In this case, we have to declare `_start` as global since it is required for the code to be properly  linked.
  
  ## Registers
 To understand the rest of the code, we first need to understand registers. Registers are a part of the processor that temporarily holds memory. In the x86_64 architecture, registers hold 64 bits. Below is a list of registers in the x86_64 architecture. 
@@ -113,7 +113,7 @@ ID | rax
 
 What we see in the table is that the ID of the syscall is stored in the rax register. The first argument in the rdi register and so on. So when you want to use a syscall you first need to store the ID value of the syscall in the rax register, the value of the first argument in the rdi register and so on. [This](http://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/) table shows all syscall for the x64 instruction set and which value should be stored in which register.
 
-Let's use sys_write as example. We want to write "Hello, World!\n" to the screen. If we look at the syscall table we see that the ID associated with sys_write is 1. So we want to store 1 in the rax register. We do this using the following command: `mov rax, 1` (mov stand for move). We need to store the file descriptor in the rdi register. There are three file descriptors:
+Let's use sys_write as example. We want to write "Hello, World!\n" to the screen. If we look at the syscall table we see that the ID associated with sys_write is 1. So we want to store 1 in the rax register. We do this using the following command: `mov rax, 1`. We need to store the file descriptor in the rdi register. There are three file descriptors:
 
 description | number 
 --- | ---
@@ -137,7 +137,7 @@ Pointers are also registers that hold data. Pointer points to data. That means t
 By default all code runs from top to bottom. The direction a program flows is called the control flow. The rip register holds the address of the next instruction to be executed. After each instruction the rip register is incremented so that it holds the address of the next instruction to be executed, making the control flow, flow from top to bottom.
 
 ## Jumps
-Jumps van be used to jump to different parts of code based on labels. They are used to divert program flow. The format of the jump is `jmp label`
+Jumps can be used to jump to different parts of code based on labels. They are used to divert program flow. The format of the jump is `jmp label`
 
 ## Comparisons
 Comparisons allow programs to be able to take different paths based on certain conditions. The format of a comparison is `cmp register, register` or `cmp register, value`.
