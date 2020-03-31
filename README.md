@@ -140,7 +140,7 @@ By default all code runs from top to bottom. The direction a program flows is ca
 Jumps van be used to jump to different parts of code based on labels. They are used to divert program flow. The format of the jump is `jmp label`
 
 ## Comparisons
-Comparisons allow programs to be able to take different paths based on certain conditions. The format of a comparison is `jmp register, register` or `jmp register, value`.
+Comparisons allow programs to be able to take different paths based on certain conditions. The format of a comparison is `cmp register, register` or `cmp register, value`.
 
 ## Conditional Jumps
 After a comparison is made, a conditional jump can be made. Conditional jumps are based on the status of the flags. In code, conditional jumps are written just like 'normal' jumps, however `jmp` is replaced by the symbol for the conditional jump. The table below shows all jump symbols. 
