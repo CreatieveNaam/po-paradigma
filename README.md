@@ -267,29 +267,40 @@ I noticed it became very difficult to debug my code so I changed my IDE from nan
 
 
 # Insertion sort
-My challenge was to implement insertion sort in assembler. Well, I did it. Insertion sort in assembly can be found [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/insertionsort.asm). 
+My challenge was to implement insertion sort in assembly. Well, I did it. Insertion sort in assembly can be found [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/insertionsort.asm). 
 
 # Quicksort
 I also implemented quicksort in assembly, see the code [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/quicksort.asm)
 
 # Differences Java and Assembler x64
-During the process of learning assembler I noticed a fair number of differences between Java and Assembler x64. In this chapter I will list these differences and give my opinion on them.
+During the process of learning assembler I noticed a fair number of differences between Java and Assembler x64. In this chapter I will list these differences and give my opinion on them. I will also list differences I didn't notice but are present.
 
 Portability. Assembler is platform specific (Agner, F. 2020). The insertion sort code doesn't work on raspberry pi for example because the raspberry pi instruction set is different. In my opinion this is a downside of assembly x64. If I write code I want to run it everywhere and not rewrite it for different hardware. I prefer Java over assembly x64 in this case.
 
 Debugging. Assembly code is more difficult to debug (Fog, A. 2020). High-level languages like Java protects the programmer against errors. When I was writing the code for quicksort, I tried to pop an empty stack. Java would've thrown a runtime exception. Assembly didn't throw anything; it put a random(?) number in the register I popped it into. In this case i prefer Java because it protects me more from errors then assembly.
 
-Development time. Writing code in assembly takes much longer then in a high level lanague (Fog, A. 2020). It took me a few hours to implement insertion sort in assembly. In Java I did it in less then an hour. In this case I prefer Java because Java allows me to write more functional code in less time.
+Development time. Writing code in assembly takes much longer then in a high level lanague (Fog, A. 2020). It took me a few hours to implement insertion sort in assembly. In Java I did it in less then an hour. In this case I prefer Java because Java allows me to write more code (that functions) in less time.
 
 Paradigm. Java is Object Oriented; assembly is imperative. The main difference between the Object Oriented paradigm and the imperative paradigm is that in the Object Orient paradigm classes talk to each other. In the imperative paradigm statements change the state of the program. For very small programs (say less than 20 lines of code.) I generally prefer the imperative paradigm since i'm able to quickly write some code and execute it. Of course it depends on what kind of code I'll be writing but generally speaking I prefer the imperative paradigm. However, the larger the codebase the more I prefer the Object Oriented paradigm since the Object Oriented paradigm allows me to structure my code better then the imperative paradigm.
 
 Syntax. Not alot of explanation needed. I prefer the assembly syntax. It's simpler and cleaner looking then Java.
 
-Variables. In assembly I have to declare a variable in special sections. In that section I have to specify the size of that variable (double word or quad word for example). Each variable declared is global. In Java I can declare a variable whenever I want and use it only within the declared scope. When I declare a variable, I have to specify it's type. I prefer variables in Java since I can reuse commonly named variables (i in for-loops for example).
+Program Flow. Assembly code gets executed from top to bottom. If the bottom is reached, it will stop executing the programming. The control flow in assembly can be changed using jumps and subroutine calls. In Java the code will also execute from top to bottom but this gets done automatically. Also, when I call a method Java will only execute that method and return to what code called that method, it doesn't execute the next method when I don't explicitly state that the method should return. I prefer Java, I have to think less about the program flow and this makes me able to focus more on the codes functionality.
 
-Todo 
-- Program flow
+Type. Assembly is an untyped language (University of Debrecen, z.d.). In the case of assembly, this means that all values are represented as word-sized integers (Morrisett, G., Walker, D, Crary, K., Glew, N, 1999). Java is a static, manifestly typed language (University of Debrecen, z.d.). This means I have to explicitly declarate a variable it's type during compile time. I have to say I liked the untyped system of assembly.I could put any value I wanted in every register. This make it easier to write code faster. However, since assembly is untyped, I can also multiply a string by 2 which shouldn't be possible in my opinion. So I like the untyped property of assembly, but I think it wil lead to a lot of unexpected behaviour.
 
+The stack. In assembly I have direct access to the stack. I actually liked this alot about assembly. In Java I have to manually make a temporary variable (or import the stack library or something) but in assembly the stack was already there so I didn't have to manually make a structure to save values. In my opinion Java should also implement a structure where I can use the stack directly without importing and declaring the stack.
+
+(Un)strucutered. Assembly is unstructured, Java is structured. Unstructured means that the code cannot be clearly separated in different modules (C. A. Hofeditz, 1985). I prefer Java in this case because it makes me able to structure my code better and thus make it more readable.
+
+Scoping. Assembly doesn't support scoping; there is only one scope and that is the global scope. I prefer Java. I can reuse commenly used variables (like *i* in for loops) and having a local scope reduces bugs (P.W. Homer, 2005).
+
+Generation. Assembly is a typed as a second type generation programming language. Java is a typed as a third type generation programming language. Second-generation languages are abstracted machine code, such as assembly language, that are tied to a specific system architecture but are human readable and need to be compiled. Third-generation programming languages decouple code from the processor, allowing for the development of code that used more readable statements (Eugene, P., Angela B, 2020). Like I said before, I want my code to run everywhere without rewriting it for different hardware. I prefer third generation languages over second-generation languages.
+
+
+- TODO
+- What vind ik belangrijk bij talen 
+- Of assembler zijn doel bereikt
 
 # Sources
 References to sources is in the Dutch way. 
@@ -303,4 +314,15 @@ https://www.agner.org/optimize/optimizing_assembly.pdf
 
 University of Maryland. (z.d). *Incremental Java*. Geraadpleegd op 30 maart 2020, van https://www.cs.umd.edu/~clin/MoreJava/Intro/what-prog.html
 
+University of Debrecen. (z.d.). *New Programming Paradigms*. Geraadpleegd op 31 maart 2020, van https://arato.inf.unideb.hu/panovics.janos/npp-intro.pdf
 
+Morrisett, G., Walker, D, Crary, K., Glew, N. (Maart 1999). *From System F to Typed Assembly Language*. Geraadpleegd op 31 maart 2020, van https://www.cs.princeton.edu/~dpw/papers/tal-toplas.pdf
+
+C. A. Hofeditz. (1985). *Computer programming languagues in practice*. Geraadpleegd op 31 maart 2020, van
+https://books.google.nl/books?id=EGWeBQAAQBAJ&pg=PA43&lpg=PA43&dq=unstructured+programming+language&source=bl&ots=q_C4SyagTu&sig=ACfU3U2VMsc9triTNcTSjne5PDc4fX389w&hl=nl&sa=X&ved=2ahUKEwiToPzX1sToAhVM2qQKHX3HACI4FBDoATAEegQIChAB#v=onepage&q=unstructured%20programming%20language&f=false
+
+P.W. Homer. (2005, 3 november). *The Programmers Paradox*. Geraadpleegd op 31 maart 2020, van  
+https://books.google.nl/books?id=rxpLCAAAQBAJ&pg=PT302&lpg=PT302&dq=global+scope+and+bugs&source=bl&ots=W1--tnxVS2&sig=ACfU3U0PQcqJAjiKFt-sFxj3uqThV88i0g&hl=nl&sa=X&ved=2ahUKEwjzhseV2cToAhXP-qQKHf8tArg4ChDoATABegQICRAB#v=onepage&q=global%20scope%20and%20bugs&f=false
+
+Eugene, P., Angela B. (2020, 31 maart). *What Are Programming Language Generations?*. Geraadpleegd op 31 maart 2020, van 
+https://www.wisegeek.com/what-are-programming-language-generations.htm
