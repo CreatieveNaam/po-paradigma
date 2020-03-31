@@ -292,6 +292,8 @@ Todo
 
 
 # Sources
+References to sources is in the Dutch way. 
+
 Kent State University. (z.d). *The Assembly Language Level*. Geraadpleeg op 27 maart 2020, van http://www.personal.kent.edu/~aguercio/CS35101Slides/Tanenbaum/CA_Ch07.pdf
 
 Landmark Universty. (z.d). *Programming Paradigms*. Geraadpleegd op 30 maart 2020, van https://cs.lmu.edu/~ray/notes/paradigms/
