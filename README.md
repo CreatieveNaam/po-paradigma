@@ -276,7 +276,7 @@ I also implemented quicksort in assembly, see the code [here](https://github.com
 
 The way I programmed quicksort was the same way as insertion sort but with [this](https://www.geeksforgeeks.org/quick-sort/) code.
 
-# Differences Java and Assembler x64
+# Differences Java and Assembly
 During the process of learning assembler I noticed a fair number of differences between Java and Assembler x64. In this chapter I will list these differences and give my opinion on them. I will also list differences I didn't notice but are present.
 
 Type. Assembly is an untyped language (University of Debrecen, z.d.). In the case of assembly, this means that all values are represented as word-sized integers (Morrisett, G., Walker, D, Crary, K., Glew, N, 1999). Java is a static, manifestly typed language (University of Debrecen, z.d.). This means I have to explicitly declarate a variable it's type during compile time. I have to say I liked the untyped system of assembly. I could put any value I wanted in every register. This make it easier to write code faster. However, since assembly is untyped, I can also multiply a string by 2 which shouldn't be possible in my opinion. So I like the untyped property of assembly, but I think it wil lead to a lot of unexpected behaviour.
@@ -304,9 +304,6 @@ Scoping. Assembly doesn't support scoping; there is only one scope and that is t
 Generation. Assembly is a typed as a second type generation programming language. Java is a typed as a third type generation programming language. Second-generation languages are abstracted machine code, such as assembly language, that are tied to a specific system architecture but are human readable and need to be compiled. Third-generation programming languages decouple code from the processor, allowing for the development of code that used more readable statements (Eugene, P., Angela B, 2020). Like I said before, I want my code to run everywhere without rewriting it for different hardware. I prefer third generation languages over second-generation languages.
 
 Fun. During the time I was writing assembly code i actually had alot of fun. I tried certain optimizations like shifting instead of dividing. Java is also fun but in a different way. In Java i try to optimize my code by making it as maintainable and readable as possible. In assembly i tried to make my code as fast as possible. An example for this is use bit shifts instead of multiplying or dividing (Agner, F. 2020). 
-
-
-
 
 
 - TODO
