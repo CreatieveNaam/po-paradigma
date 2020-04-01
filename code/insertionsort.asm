@@ -35,7 +35,7 @@ main:
             
             ; arr[j + 1] = arr[j]
             mov rax, [rsi + rcx]
-            mov [rsi + rcx + 8], rax ; Value of rax rememberd in the while loop conidition
+            mov [rsi + rcx + 8], rax 
       
             ; j = j - 1
             sub rcx, 8
