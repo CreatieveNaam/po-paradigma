@@ -5,10 +5,9 @@ The purpose of this assignment is to learn a new programming language by myself 
 
 The new programming language I want to learn is assembly for the x86-64 instruction set. I chose assembly because I think it's important for software developers to know how software works near the hardware level. Also, I have an interest in reverse-engineering but I never found an opportunity to learn assembly, so this is the ideal time to learn assembly.
 
-The bulk of my information will come from [this](https://www.youtube.com/watch?v=VQAKkuLL31g&list=PLetF-YjXm-sCH6FrTz4AQhfH6INDQvQSn) Youtube guide. 
-
 For this assignment to be a success, I will do a challenge: implement the insertion sort algorithm in assembly x64. My assignment will be a success when the assembly code can sort an array from low to high using the insertion sort algorithm. I think this challenge is perfect to implement in assembly since assembly code can produce much faster code (and fast sorting is what we want) than high(er) level languages (Kent State University, z.d).
 
+The bulk of my information will come from [this](https://www.youtube.com/watch?v=VQAKkuLL31g&list=PLetF-YjXm-sCH6FrTz4AQhfH6INDQvQSn) Youtube guide. My plan is to follow this guide and give a summary of videos I think are relevant for implementing insertion sort. When I am done with the video series, I will start implementing insertion sort.
 
 During this assignment I will use the following tools:
 - Debian 10.3 as operating system.
@@ -266,7 +265,7 @@ The video tutorial doesn't teach the use of arrays but I think it's crucial to u
 I noticed it became very difficult to debug my code, so I changed my IDE from nano to SASM. Instead of `global _start` SASM needs a `global _main`. So from now on, I will use main instead of start.
 
 # Change of challenge
-While I was writing code for arrays I noticed I struggled a lot with basic assembly like printing all elements of an array. I decided to change my challenge from quicksort to insertion sort. The way I see it is that insertion sort is easier to implement since insertion sort doesn't use recursion. This would give me more time to focus on the basics of assembly before moving on to the harder parts (like recursion). 
+I'm going to be honest here. I lied. My challenge was actually implementing quicksort instead of insertion sort. However, during the implementation of arrays I noticed I struggeld a lot with basic assembly like printing all elements of an array. So I decided to make my challenge easier. This would give me more time to focus on the basics of assembly before moving on to the harder parts (like recursion). 
 
 # Insertion sort
 My challenge was to implement insertion sort in assembly. Well, I did it. Insertion sort in assembly can be found [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/insertionsort.asm). The code should be readable with the explanation I previously gave and the comments.
