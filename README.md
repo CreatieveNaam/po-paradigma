@@ -272,8 +272,8 @@ My challenge was to implement insertion sort in assembly. Well, I did it. Insert
 
 The way I programmed insertion sort was to use a correct insertion sort in Java as an example and program each line of code in assembly. This made it easier for me to write assembly code since it made me clear what I needed to do. I used [this](https://www.geeksforgeeks.org/insertion-sort/) implementation of insertion sort as an example. 
 
-# Quicksort
-After implementing insertion sort in assembly I felt my programming power grow over 9000 and decided I could use another challenge. I decided the implement quicksort in assembly since that was my original challenge after all. While quicksort was a bit harder than insertion sort, I managed to implement quicksort in assembly. The code can be found [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/quicksort.asm). I used the same plan as the plan I had for insertion sort.
+# Quicksort (median of three pivot)
+After implementing insertion sort in assembly I felt my programming power grow over 9000 and decided I could use another challenge. I decided the implement quicksort in assembly since that was my original challenge after all. While quicksort was a bit harder than insertion sort (it took me 4 hours instead of 2 hours like insertion sort), I managed to implement quicksort in assembly. The code can be found [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/quicksort.asm). I used the same plan as the plan I had for insertion sort.
 
 # Differences Java and Assembly and my opinion on those differences
 During the process of learning assembly I noticed a fair number of differences between Java and assembly x64. In this chapter I will list these differences and give my opinion on them. I will also list differences I didn't notice but are present.
