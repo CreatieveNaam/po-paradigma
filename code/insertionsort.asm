@@ -22,7 +22,7 @@ main:
         
         ; j = i - 1
         push rcx ; From now on we are going to use rcx for the 'j' in the loop
-        sub rcx, 8
+        sub rcx, 8  ; Since we have quad word (8 bytes) as size, we need to substract 8 to get the previous 'index' of the array
                           
         _BeginWhileLoop:
             ; While loop condition (j >= 0)
