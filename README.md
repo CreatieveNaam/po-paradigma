@@ -275,27 +275,34 @@ I also implemented quicksort in assembly, see the code [here](https://github.com
 # Differences Java and Assembler x64
 During the process of learning assembler I noticed a fair number of differences between Java and Assembler x64. In this chapter I will list these differences and give my opinion on them. I will also list differences I didn't notice but are present.
 
+Type. Assembly is an untyped language (University of Debrecen, z.d.). In the case of assembly, this means that all values are represented as word-sized integers (Morrisett, G., Walker, D, Crary, K., Glew, N, 1999). Java is a static, manifestly typed language (University of Debrecen, z.d.). This means I have to explicitly declarate a variable it's type during compile time. I have to say I liked the untyped system of assembly. I could put any value I wanted in every register. This make it easier to write code faster. However, since assembly is untyped, I can also multiply a string by 2 which shouldn't be possible in my opinion. So I like the untyped property of assembly, but I think it wil lead to a lot of unexpected behaviour.
+
+Paradigm. Java is Object Oriented; assembly is imperative. The main difference between the Object Oriented paradigm and the imperative paradigm is that in the Object Orient paradigm classes (which in most cases represent real life objects) talk to each other. In the imperative paradigm statements change the state of the program. For very small programs (say less than 20 lines of code.) I generally prefer the imperative paradigm since i'm able to quickly write some code and execute it. Of course it depends on what kind of code I'll be writing but generally speaking I prefer the imperative paradigm. However, the larger the codebase the more I prefer the Object Oriented paradigm since the Object Oriented paradigm allows me to structure my code better then the imperative paradigm.
+
+Since assembly isn't object oriented, objects do not exist in assembly. This means that a string doesn't exist in assembly either. In assembly I had to make an array of word-sized integers and loop over that array to print a string. In my opinion this is to much work to print a string. I prefer Java over assembly in this case.
+
+(Un)strucutered. Assembly is unstructured, Java is structured. Unstructured means that the code cannot be clearly separated in different modules (C. A. Hofeditz, 1985). I prefer Java in this case because it makes me able to structure my code better and thus make it more readable and maintainable. 
+
 Portability. Assembler is platform specific (Agner, F. 2020). The insertion sort code doesn't work on raspberry pi for example because the raspberry pi instruction set is different. In my opinion this is a downside of assembly x64. If I write code I want to run it everywhere and not rewrite it for different hardware. I prefer Java over assembly x64 in this case.
 
-Debugging. Assembly code is more difficult to debug (Fog, A. 2020). High-level languages like Java protects the programmer against errors. When I was writing the code for quicksort, I tried to pop an empty stack. Java would've thrown a runtime exception. Assembly didn't throw anything; it put a random(?) number in the register I popped it into. In this case i prefer Java because it protects me more from errors then assembly.
+Error protection. High-level languages like Java protects the programmer against errors. When I was writing the code for quicksort, I tried to pop an empty stack. Java would've thrown a runtime exception. Assembly didn't throw anything; it put a random(?) number in the register I popped it into. In this case i prefer Java because it protects me more from errors then assembly.
 
 Development time. Writing code in assembly takes much longer then in a high level lanague (Fog, A. 2020). It took me a few hours to implement insertion sort in assembly. In Java I did it in less then an hour. In this case I prefer Java because Java allows me to write more code (that functions) in less time.
-
-Paradigm. Java is Object Oriented; assembly is imperative. The main difference between the Object Oriented paradigm and the imperative paradigm is that in the Object Orient paradigm classes talk to each other. In the imperative paradigm statements change the state of the program. For very small programs (say less than 20 lines of code.) I generally prefer the imperative paradigm since i'm able to quickly write some code and execute it. Of course it depends on what kind of code I'll be writing but generally speaking I prefer the imperative paradigm. However, the larger the codebase the more I prefer the Object Oriented paradigm since the Object Oriented paradigm allows me to structure my code better then the imperative paradigm.
 
 Syntax. Not alot of explanation needed. I prefer the assembly syntax. It's simpler and cleaner looking then Java.
 
 Program Flow. Assembly code gets executed from top to bottom. If the bottom is reached, it will stop executing the programming. The control flow in assembly can be changed using jumps and subroutine calls. In Java the code will also execute from top to bottom but this gets done automatically. Also, when I call a method Java will only execute that method and return to what code called that method, it doesn't execute the next method when I don't explicitly state that the method should return. I prefer Java, I have to think less about the program flow and this makes me able to focus more on the codes functionality.
 
-Type. Assembly is an untyped language (University of Debrecen, z.d.). In the case of assembly, this means that all values are represented as word-sized integers (Morrisett, G., Walker, D, Crary, K., Glew, N, 1999). Java is a static, manifestly typed language (University of Debrecen, z.d.). This means I have to explicitly declarate a variable it's type during compile time. I have to say I liked the untyped system of assembly.I could put any value I wanted in every register. This make it easier to write code faster. However, since assembly is untyped, I can also multiply a string by 2 which shouldn't be possible in my opinion. So I like the untyped property of assembly, but I think it wil lead to a lot of unexpected behaviour.
-
 The stack. In assembly I have direct access to the stack. I actually liked this alot about assembly. In Java I have to manually make a temporary variable (or import the stack library or something) but in assembly the stack was already there so I didn't have to manually make a structure to save values. In my opinion Java should also implement a structure where I can use the stack directly without importing and declaring the stack.
-
-(Un)strucutered. Assembly is unstructured, Java is structured. Unstructured means that the code cannot be clearly separated in different modules (C. A. Hofeditz, 1985). I prefer Java in this case because it makes me able to structure my code better and thus make it more readable.
 
 Scoping. Assembly doesn't support scoping; there is only one scope and that is the global scope. I prefer Java. I can reuse commenly used variables (like *i* in for loops) and having a local scope reduces bugs (P.W. Homer, 2005).
 
 Generation. Assembly is a typed as a second type generation programming language. Java is a typed as a third type generation programming language. Second-generation languages are abstracted machine code, such as assembly language, that are tied to a specific system architecture but are human readable and need to be compiled. Third-generation programming languages decouple code from the processor, allowing for the development of code that used more readable statements (Eugene, P., Angela B, 2020). Like I said before, I want my code to run everywhere without rewriting it for different hardware. I prefer third generation languages over second-generation languages.
+
+Fun. During the time I was writing assembly code i actually had alot of fun. I tried certain optimizations like shifting instead of dividing. Java is also fun but in a different way. In Java i try to optimize my code by making it as maintainable and readable as possible. In assembly i tried to make my code as fast as possible. An example for this is use bit shifts instead of multiplying or dividing (Agner, F. 2020). 
+
+
+
 
 
 - TODO
