@@ -269,8 +269,12 @@ I noticed it became very difficult to debug my code so I changed my IDE from nan
 # Insertion sort
 My challenge was to implement insertion sort in assembly. Well, I did it. Insertion sort in assembly can be found [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/insertionsort.asm). The code should be readable with the explanation I previously gave and the comments.
 
+The way I programmed insertion sort was to use a correct insertion sort in Java as example and program each line of code in assembly. While I did implement insertion sort in Java before, I used an [other](https://www.geeksforgeeks.org/insertion-sort/) implementation as example since that implementation had fewer lines of code. That I used a Java example can be seen in the comments.
+
 # Quicksort
 I also implemented quicksort in assembly, see the code [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/quicksort.asm) The code should be readable with the explanation I previously gave and the comments.
+
+The way I programmed quicksort was the same way as insertion sort but with [this](https://www.geeksforgeeks.org/quick-sort/) code.
 
 # Differences Java and Assembler x64
 During the process of learning assembler I noticed a fair number of differences between Java and Assembler x64. In this chapter I will list these differences and give my opinion on them. I will also list differences I didn't notice but are present.
