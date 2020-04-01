@@ -265,7 +265,7 @@ The video tutorial doesn't teach the use of arrays but I think it's crucial to u
 I noticed it became very difficult to debug my code, so I changed my IDE from nano to SASM. Instead of `global _start` SASM needs a `global _main`. So from now on, I will use main instead of start.
 
 # Change of challenge
-I'm going to be honest here, I lied. My challenge was actually implementing quicksort instead of insertion sort. However, during the implementation of arrays I noticed I struggeld a lot with basic assembly like printing all elements of an array. So I decided to make my challenge easier. This would give me more time to focus on the basics of assembly before moving on to the harder parts (like recursion). 
+I'm going to be honest here, I lied. My challenge was actually implementing quicksort instead of insertion sort. However, during the implementation of arrays I noticed I struggled a lot with basic assembly like printing all elements of an array. So I decided to make my challenge easier. This would give me more time to focus on the basics of assembly before moving on to the harder parts (like recursion).
 
 # Insertion sort
 My challenge was to implement insertion sort in assembly. Well, I did it. Insertion sort in assembly can be found [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/insertionsort.asm). The code should be readable with the explanation I previously gave and the comments.
