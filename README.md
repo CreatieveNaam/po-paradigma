@@ -1,8 +1,7 @@
 # Introduction
-
 This repository contains code and process details for my school assignment 'PO-paradigma'. My assignment is to learn a new programming language that interests me and differs from the programming language we are used to at school: Java.
 
-This assignments purpose is to learn a new programming language by myself and to spread the knowledge I got from this assignment to fellow students. 
+The purpose of this assignment is to learn a new programming language by myself and to spread the knowledge I got from this assignment to fellow students. 
 
 The new programming language I want to learn is assembly for the x86-64 instruction set. I chose assembly because I think it's important that software developers know how software works near the hardware level. Also, I have an interest in reverse-engineering but I never found an opportunity to learn assembly, so this is the ideal time to learn assembly.
 
@@ -20,7 +19,7 @@ Source video: https://youtu.be/BWRR3Hecjao
 
 Code I made for this chapter: https://github.com/CreatieveNaam/po-paradigma/blob/master/code/basicASM.asm
 
-The code below is prints out "Hello, World".
+The code below prints out "Hello, World".
 
 ```
 section .data
@@ -43,13 +42,15 @@ _start:
  Let's take a look what the code means.
  
  ## Defining Bytes 
- So what does `text db "Hello, World!",10` mean?
+What does `text db "Hello, World!",10` mean?
  
 `db` stands for "define bytes". This means that we are going to define bytes of data. 
  
 `"Hello, World!",10` is the bytes of data we are defining. The "10" is a newline character. 
  
-`text` is the name assigned to the address in memory that this data is located in. When we use "text" in the code, when the code is compiled, the compiler will determine the actual location in memory of this data and replace all instances of "text" with that memory address.
+ When the code is compiled the comiler will determine the actual
+ 
+`text` is the name assigned to the address in memory that this data is located in. When the code is compiled the compiler will determine the actual location in memory of this data and replace all instances of "text" with that memory address.
 
 ## Sections
 So what does the code `section .data` and `section .text` mean?
@@ -128,7 +129,7 @@ Source video: https://youtu.be/busHtSyx2-w
 
 Code I made for this chapter: https://github.com/CreatieveNaam/po-paradigma/blob/master/code/controlFlow.asm
 
-In this chapter we get to know what pointers, control flow, jumps, conditional jumps and calls are. We will also learn  how to do comparisons.
+In this chapter we get to know what pointers, control flow, jumps, conditional jumps and calls are. We will also learn how to do comparisons.
 
 ## Pointers
 Pointers are also registers that hold data. Pointer points to data. That means they hold the memory address of the data (not the value of the data). There are a bunch of different pointers but for know it's important to know what the rip pointer is. The rip pointer, also known as the index pointer, points to the next address to be executed in the control flow.
@@ -226,7 +227,7 @@ _printRAXDigit:
 	syscall
 	ret
 ```
-The code `add rax, 48` adds 48 to the rax register. So if the value in rax was 0, it is now 48. If we look at the ASCII table we, can see that 48 is the value of the "0" character.
+The code `add rax, 48` adds 48 to the rax register. If the value in rax was 0, it is now 48. If we look at the ASCII table we  can see that 48 is the value of the "0" character.
 
 The code `mov [digit], al` moves the lower byte of the rax register into the memory address 'digit'. 'Digit' is actually defined with two bytes (0 and 10). Since we are only loading the lower byte of the rax register into 'digit', it only overwrites the first byte and does not affect the newline character.
 
@@ -261,23 +262,25 @@ Just as last time, I explain the code in the file. See explanation [here](https:
 # Arrays
 Sources: [This](https://www.tutorialspoint.com/assembly_programming/assembly_arrays.htm) tutorial, [this](https://www.youtube.com/watch?v=bM0_HRkM_CE) video.
 
-The video tutorial doesn't teach the use of arrays, but I think it's crucial to use arrays for implementing insertion sort. Defining an array is almost the same as defining one 'variable'. Instead of `num db 52` for defining one 'variable' we use `num db 52, 53` for defining an array. To see how I printed the array see [this](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/arrays.asm) file.
+The video tutorial doesn't teach the use of arrays but I think it's crucial to use arrays for implementing insertion sort. Defining an array is almost the same as defining one 'variable'. Instead of `num db 52` for defining one 'variable' we use `num db 52, 53` for defining an array. See my implementation of printing an array in this [this](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/arrays.asm) file.
 
 I noticed it became very difficult to debug my code so I changed my IDE from nano to SASM. Instead of `global _start` SASM needs a `global _main`. So from now on I will use main instead of start.
 
+# Change of challenge
+While I was writing code for arrays I noticed I struggeld alot with basic assembly like printing a number. I decided to change my challagne from quicksort to insertion sort. The way I see it is that insertion sort is easier to implement since insertion sort doesn't use recursion. 
 
 # Insertion sort
 My challenge was to implement insertion sort in assembly. Well, I did it. Insertion sort in assembly can be found [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/insertionsort.asm). The code should be readable with the explanation I previously gave and the comments.
 
-The way I programmed insertion sort was to use a correct insertion sort in Java as example and program each line of code in assembly. While I did implement insertion sort in Java before, I used an [other](https://www.geeksforgeeks.org/insertion-sort/) implementation as example since that implementation had fewer lines of code. That I used a Java example can be seen in the comments.
+The way I programmed insertion sort was to use a correct insertion sort in Java as example and program each line of code in assembly. This made it easier for me to write assembly code since it made me clear what I needed to do. I used [this](https://www.geeksforgeeks.org/insertion-sort/) implementation of insertion sort as example. 
 
 # Quicksort
-I also implemented quicksort in assembly, see the code [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/quicksort.asm) The code should be readable with the explanation I previously gave and the comments.
+I also implemented quicksort in assembly, see the code [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/quicksort.asm).
 
 The way I programmed quicksort was the same way as insertion sort but with [this](https://www.geeksforgeeks.org/quick-sort/) code.
 
 # Differences Java and Assembly
-During the process of learning assembler I noticed a fair number of differences between Java and Assembler x64. In this chapter I will list these differences and give my opinion on them. I will also list differences I didn't notice but are present.
+During the process of learning assembly I noticed a fair number of differences between Java and assembly x64. In this chapter I will list these differences and give my opinion on them. I will also list differences I didn't notice but are present.
 
 Type. Assembly is an untyped language (University of Debrecen, z.d.). In the case of assembly, this means that all values are represented as word-sized integers (Morrisett, G., Walker, D, Crary, K., Glew, N, 1999). Java is a static, manifestly typed language (University of Debrecen, z.d.). This means I have to explicitly declarate a variable it's type during compile time. I have to say I liked the untyped system of assembly. I could put any value I wanted in every register. This make it easier to write code faster. However, since assembly is untyped, I can also multiply a string by 2 which shouldn't be possible in my opinion. So I like the untyped property of assembly, but I think it wil lead to a lot of unexpected behaviour.
 
@@ -287,23 +290,23 @@ Since assembly isn't object oriented, objects do not exist in assembly. This mea
 
 (Un)strucutered. Assembly is unstructured, Java is structured. Unstructured means that the code cannot be clearly separated in different modules (C. A. Hofeditz, 1985). I prefer Java in this case because it makes me able to structure my code better and thus make it more readable and maintainable. 
 
-Portability. Assembler is platform specific (Agner, F. 2020). The insertion sort code doesn't work on raspberry pi for example because the raspberry pi instruction set is different. In my opinion this is a downside of assembly x64. If I write code I want to run it everywhere and not rewrite it for different hardware. I prefer Java over assembly x64 in this case.
+Portability. Assembler is platform specific (Agner, F. 2020). The insertion sort code doesn't work on raspberry pi because the raspberry pi instructionset is different then the x64 instructionset. This is a downside in my opinion. If I write code I want to run it everywhere and not rewrite code for different hardware. I prefer Java over assembly in this case.
 
 Error protection. High-level languages like Java protects the programmer against errors. When I was writing the code for quicksort, I tried to pop an empty stack. Java would've thrown a runtime exception. Assembly didn't throw anything; it put a random(?) number in the register I popped it into. In this case i prefer Java because it protects me more from errors then assembly.
 
 Development time. Writing code in assembly takes much longer then in a high level lanague (Fog, A. 2020). It took me a few hours to implement insertion sort in assembly. In Java I did it in less then an hour. In this case I prefer Java because Java allows me to write more code (that functions) in less time.
 
-Syntax. Not alot of explanation needed. I prefer the assembly syntax. It's simpler and cleaner looking then Java.
+Syntax. Not alot of explanation needed. I prefer assembly syntax. It's simpler and cleaner looking then Java.
 
-Program Flow. Assembly code gets executed from top to bottom. If the bottom is reached, it will stop executing the programming. The control flow in assembly can be changed using jumps and subroutine calls. In Java the code will also execute from top to bottom but this gets done automatically. Also, when I call a method Java will only execute that method and return to what code called that method, it doesn't execute the next method when I don't explicitly state that the method should return. I prefer Java, I have to think less about the program flow and this makes me able to focus more on the codes functionality.
+Program Flow. Assembly code gets executed from top to bottom. If the bottom is reached, it will stop executing the program. The control flow in assembly can be changed using jumps and subroutine calls. In Java the code will also execute from top to bottom automatically. Also, when I call a method Java will only execute that method and return to what code called that method, it doesn't execute the next method when I don't explicitly state that the method should return. I prefer Java, I have to think less about the program flow and this makes me able to focus more on the codes functionality.
 
 The stack. In assembly I have direct access to the stack. I actually liked this alot about assembly. In Java I have to manually make a temporary variable (or import the stack library or something) but in assembly the stack was already there so I didn't have to manually make a structure to save values. In my opinion Java should also implement a structure where I can use the stack directly without importing and declaring the stack.
 
 Scoping. Assembly doesn't support scoping; there is only one scope and that is the global scope. I prefer Java. I can reuse commenly used variables (like *i* in for loops) and having a local scope reduces bugs (P.W. Homer, 2005).
 
-Generation. Assembly is a typed as a second type generation programming language. Java is a typed as a third type generation programming language. Second-generation languages are abstracted machine code, such as assembly language, that are tied to a specific system architecture but are human readable and need to be compiled. Third-generation programming languages decouple code from the processor, allowing for the development of code that used more readable statements (Eugene, P., Angela B, 2020). Like I said before, I want my code to run everywhere without rewriting it for different hardware. I prefer third generation languages over second-generation languages.
+Generation. Assembly is typed as a second type generation programming language. Java is typed as a third type generation programming language. Second-generation languages are abstracted machine code, such as assembly language, that are tied to a specific system architecture but are human readable and need to be compiled. Third-generation programming languages decouple code from the processor, allowing for the development of code that used more readable statements (Eugene, P., Angela B, 2020). Like I said before, I want my code to run everywhere without rewriting it for different hardware. I prefer third generation languages over second-generation languages.
 
-Fun. During the time I was writing assembly code i actually had alot of fun. I tried certain optimizations like shifting instead of dividing. Java is also fun but in a different way. In Java i try to optimize my code by making it as maintainable and readable as possible. In assembly i tried to make my code as fast as possible. An example for this is use bit shifts instead of multiplying or dividing (Agner, F. 2020). 
+Fun. During the time I was writing assembly code I actually had alot of fun. I tried certain optimizations like shifting instead of dividing. Java is also fun but in a different way. In Java i optimize my code by making it as maintainable and readable as possible. In assembly I tried to make my code as fast as possible. An example for this is using bit shifts instead of multiplying or dividing (Agner, F. 2020). 
 
 
 - TODO
