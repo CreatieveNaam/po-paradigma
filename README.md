@@ -192,7 +192,7 @@ Source video: https://www.youtube.com/watch?v=NFv7l3wQsZ4
 In this chapter we get to know how to do math operations, display a digit and use the Stack. You should know what the [Stack](https://www.cs.cmu.edu/~adamchik/15-121/lectures/Stacks%20and%20Queues/Stacks%20and%20Queues.html) is before you read this chapter. You should also be familiar with the ASCII [table](https://i.stack.imgur.com/iCOov.gif).
 
 ## Math operations
-Math operations are used to mathematically manipulate register. The syntax of a math operation is typically `operation register, value/register`. The first register is the subject op the operation. The table below shows every math operation.
+Math operations are used to mathematically manipulate register. The syntax of a math operation is typically `operation register, value/register`. The first register is the subject of the operation. The table below shows every math operation.
 
 Operation | Operation Name | Operation Name (signed) | Description
 --- | --- | --- | --- 
@@ -289,7 +289,7 @@ Since assembly isn't object-oriented, objects do not exist in assembly. This mea
 
 Portability. Assembler is platform-specific (Agner, F. 2020). The insertion sort code doesn't work on a Raspberry Pi because the Raspberry Pi instruction set is different compared to the x64 instruction set. This is a downside in my opinion. If I write code I want to run it everywhere and not rewrite code for different hardware. I prefer Java to assembly in this case.
 
-Error protection. High-level languages like Java protect the programmer against errors. When I was writing the code for quicksort, I tried to pop an empty stack. Java would've thrown a runtime exception. Assembly didn't throw anything; it put a random(?) number in the register I popped into. In this case, I prefer Java because it protects me more from errors than assembly.
+Error protection. High-level languages like Java protect the programmer against errors. While I was writing the code for quicksort, I tried to pop an empty stack. Java would've thrown a runtime exception. Assembly didn't throw anything; it put a seemingly random number in the register I popped into. In this case, I prefer Java because it protects me more from errors than assembly.
 
 Development time. Writing code in assembly takes much longer than in a high-level language (Fog, A. 2020). It took me a few hours to implement insertion sort in assembly. In Java, I did it in less than an hour. In this case I prefer Java because Java allows me to write more code (that functions) in less time.
 
@@ -309,7 +309,7 @@ Fun. During the time I was writing assembly code I had a lot of fun. I tried cer
 # Sources
 References to sources is in the Dutch way. 
 
-Kent State University. (z.d). *The Assembly Language Level*. Geraadpleeg op 27 maart 2020, van http://www.personal.kent.edu/~aguercio/CS35101Slides/Tanenbaum/CA_Ch07.pdf
+Kent State University. (z.d). *The Assembly Language Level*. Geraadpleegd op 27 maart 2020, van http://www.personal.kent.edu/~aguercio/CS35101Slides/Tanenbaum/CA_Ch07.pdf
 
 Landmark Universty. (z.d). *Programming Paradigms*. Geraadpleegd op 30 maart 2020, van https://cs.lmu.edu/~ray/notes/paradigms/
 
