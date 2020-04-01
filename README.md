@@ -7,7 +7,8 @@ The new programming language I want to learn is assembly for the x86-64 instruct
 
 The bulk of my information will come from [this](https://www.youtube.com/watch?v=VQAKkuLL31g&list=PLetF-YjXm-sCH6FrTz4AQhfH6INDQvQSn) Youtube guide. 
 
-For this assignment to be a success, I will do a challenge: implement the insertion sort algorithm in assembly x64. My assignment will be a success when the assembly code is able to sort an array from low to high using the insertion sort algorithm. I think this challenge is perfect to implement in assembly since assembly code can produce much faster code (and fast sorting is what we want) then high(er) level languages (Kent State University, z.d).
+For this assignment to be a success, I will do a challenge: implement the insertion sort algorithm in assembly x64. My assignment will be a success when the assembly code can sort an array from low to high using the insertion sort algorithm. I think this challenge is perfect to implement in assembly since assembly code can produce much faster code (and fast sorting is what we want) than high(er) level languages (Kent State University, z.d).
+
 
 During this assignment I will use the following tools:
 - Debian 10.3 as operating system.
@@ -93,12 +94,12 @@ r13b | r13w | r13d | r13
 r14b | r14w | r14d | r14
 r15b | r15w | r15d | r15
 
-Notice the eax register. It's part of the rax register and half its size. The 16-bit ax register is part of the eax register and half its size and the 8-bit register al is part of the ax register and half its size. This mean that when we use the al register we are modifying the lower 8 bits of the rax register. The diagram below visualizes the rax register.
+Notice the eax register. It's part of the rax register and half its size. The 16-bit ax register is part of the eax register and half its size and the 8-bit register al is part of the ax register and half its size. This means that when we use the al register we are modifying the lower 8 bits of the rax register. The diagram below visualizes the rax register.
 
 ![64-bit register](https://github.com/CreatieveNaam/po-paradigma/blob/master/img/64-bit%20register.png "rax register")
 
 ## Syscall
-A syscall is when a program requests a service from the kernel. Every syscall has an ID associated with it. A syscall takes arguments. The value of those arguments are based on the value stored in the register.
+A syscall is when a program requests a service from the kernel. Every syscall has an ID associated with it. A syscall takes arguments. The value of those arguments is based on the value stored in the register.
 
 argument | register 
 --- | ---
@@ -110,7 +111,7 @@ ID | rax
 5 | r8
 6 | r9
 
-What we see in the table is that the ID of the syscall is stored in the rax register. The first argument in the rdi register and so on. So when we want to use a syscall, we have to store the ID value of the syscall in the rax register, the value of the first argument in the rdi register and so on. [This](http://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/) table shows all syscalls for the x64 instruction set and which value should be stored in which register.
+What we see in the table is that the ID of the syscall is stored in the rax register. So when we want to use a syscall, we have to store the ID value of the syscall in the rax register, the value of the first argument in the rdi register and so on. [This](http://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/) table shows all syscalls for the x64 instruction set and which value should be stored in which register.
 
 Let's use sys_write as an example. We want to write "Hello, World!\n" to the screen. When we look at the syscall table we see that the ID associated with sys_write is 1. So we want to store 1 in the rax register. We do this using the following command: `mov rax, 1`. We need to store the file descriptor in the rdi register. There are three file descriptors:
 
@@ -120,7 +121,7 @@ stdin | 0
 stdout | 1
 stderr | 2
 
-We want to write to the screen, so as file descriptor we choose 1. We do this using the following command: `mov rdi, 1`. In the rsi register we want to store the pointer to memory address that holds the text "Hello, World!\n". If we take a look at the code of the "Hello World!" program we see the following line of code: `text db "Hello, World!",10`. We know that when we use 'text' in the code, the compiler will determine the actual location in memory of this data. So if we want to store the pointer to the memory address that holds the text "Hello, World!\n" in the rsi register we can use the following command: `mov rsi, text`. The last argument is the length of the string we want to print. In this case the length of our string is 14, so we want to store the value 14 in the rdx register. We do this using the following command `mov rdx, 14`. The last thing we need to do is make the syscall. We do this using the following command: `syscall`. 
+We want to write to the screen, so as file descriptor we choose 1. We do this using the following command: `mov rdi, 1`. In the rsi register we want to store the pointer to a memory address that holds the text "Hello, World!\n". If we take a look at the code of the "Hello World!" program we see the following line of code: `text db "Hello, World!",10`. We know that when we use 'text' in the code, the compiler will determine the actual location in memory of this data. So if we want to store the pointer to the memory address that holds the text "Hello, World!\n" in the rsi register we can use the following command: `mov rsi, text`. The last argument is the length of the string we want to print. In this case the length of our string is 14, so we want to store the value 14 in the rdx register. We do this using the following command `mov rdx, 14`. The last thing we need to do is make the syscall. We do this using the following command: `syscall`. 
 
 # Jumps, Calls, Comparisons
 Source video: https://youtu.be/busHtSyx2-w
@@ -172,7 +173,7 @@ jg _doY
 ```
 
 ## Registers as pointers
-The default registers can be treated as pointers. To treat a register as pointer, surround the register name with square brackets, such as \[rax]. The following code loads the value in the rbx register into the rax register:
+The default registers can be treated as pointers. To treat a register as a pointer, surround the register name with square brackets, such as \[rax]. The following code loads the value in the rbx register into the rax register:
 ```
 mov rax, rbx
 ```
@@ -227,7 +228,7 @@ _printRAXDigit:
 ```
 The code `add rax, 48` adds 48 to the rax register. If we look at the ASCII table, we see that 48 is the value of the "0" character.
 
-The code `mov [digit], al` moves the lower byte of the rax register into the memory address 'digit'. 'Digit' is actually defined with two bytes (0 and 10). Since we are only loading the lower byte of the rax register into 'digit', it only overwrites the first byte and does not affect the newline character.
+The code `mov [digit], al` moves the lower byte of the rax register into the memory address 'digit'. 'Digit' is defined with two bytes (0 and 10). Since we are only loading the lower byte of the rax register into 'digit', it only overwrites the first byte and does not affect the newline character.
 
 The code after `mov [digit], al` prints the two bytes to the screen and returns to the position the subroutine was called from. 
 
@@ -262,15 +263,15 @@ Sources: [This](https://www.tutorialspoint.com/assembly_programming/assembly_arr
 
 The video tutorial doesn't teach the use of arrays but I think it's crucial to use arrays for implementing insertion sort. Defining an array is almost the same as defining one 'variable'. Instead of `num db 52` for defining one 'variable' we use `num db 52, 53` for defining an array. See my implementation of printing an array in this [this](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/arrays.asm) file.
 
-I noticed it became very difficult to debug my code, so I changed my IDE from nano to SASM. Instead of `global _start` SASM needs a `global _main`. So from now on I will use main instead of start.
+I noticed it became very difficult to debug my code, so I changed my IDE from nano to SASM. Instead of `global _start` SASM needs a `global _main`. So from now on, I will use main instead of start.
 
 # Change of challenge
-While I was writing code for arrays I noticed I struggled a lot with basic assembly like printing a number. I decided to change my challenge from quicksort to insertion sort. The way I see it is that insertion sort is easier to implement since insertion sort doesn't use recursion. 
+While I was writing code for arrays I noticed I struggled a lot with basic assembly like printing all elements of an array. I decided to change my challenge from quicksort to insertion sort. The way I see it is that insertion sort is easier to implement since insertion sort doesn't use recursion. This would give me more time to focus on the basics of assembly before moving on to the harder parts (like recursion). 
 
 # Insertion sort
 My challenge was to implement insertion sort in assembly. Well, I did it. Insertion sort in assembly can be found [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/insertionsort.asm). The code should be readable with the explanation I previously gave and the comments.
 
-The way I programmed insertion sort was to use a correct insertion sort in Java as example and program each line of code in assembly. This made it easier for me to write assembly code since it made me clear what I needed to do. I used [this](https://www.geeksforgeeks.org/insertion-sort/) implementation of insertion sort as example. 
+The way I programmed insertion sort was to use a correct insertion sort in Java as an example and program each line of code in assembly. This made it easier for me to write assembly code since it made me clear what I needed to do. I used [this](https://www.geeksforgeeks.org/insertion-sort/) implementation of insertion sort as an example. 
 
 # Quicksort
 While quicksort was a bit harder than insertion sort, I managed to implement quicksort in assembly. The code can be found [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/quicksort.asm). I used the same plan as the plan I had for insertion sort.
@@ -280,29 +281,30 @@ During the process of learning assembly I noticed a fair number of differences b
 
 Type. Assembly is an untyped language (University of Debrecen, z.d.). In the case of assembly, this means that all values are represented as word-sized integers (Morrisett, G., Walker, D, Crary, K., Glew, N, 1999). Java is a static, manifestly typed language (University of Debrecen, z.d.). This means I have to explicitly declare a variable type during development time. I have to say I liked the untyped system of assembly. I could put any value I wanted in every register. This makes it easier to write code faster. However, since assembly is untyped, I can also multiply a string by 2 which shouldn't be possible in my opinion. So I like the untyped property of assembly, but I think it will lead to a lot of unexpected behavior.
 
-Paradigm. Java is Object-Oriented; assembly is imperative. The main difference between the  Object-Oriented paradigm and the imperative paradigm is that in the Object Orient paradigm classes (which in most cases represent real-life objects) talk to each other. In the imperative paradigm statements change the state of the program. For very small programs (say less than 20 lines of code.) I generally prefer the imperative paradigm since I'm able to quickly write some code and execute it. Of course it depends on what kind of code I'll be writing but generally speaking I prefer the imperative paradigm. However, the larger the codebase the more I prefer the Object-Oriented paradigm since the Object Oriented paradigm allows me to structure my code better than the imperative paradigm.
+Paradigm. Java is Object-Oriented; assembly is imperative. The main difference between the  Object-Oriented paradigm and the imperative paradigm is that in the Object Orient paradigm classes (which in most cases represent real-life objects) talk to each other. In the imperative paradigm statements change the state of the program. For very small programs (say less than 20 lines of code.) I generally prefer the imperative paradigm since I'm able to quickly write some code and execute it. Of course it depends on what kind of code I'll be writing but generally speaking I prefer the imperative paradigm. However, the larger the codebase the more I prefer the Object-Oriented paradigm since the Object-Oriented paradigm allows me to structure my code better than the imperative paradigm.
 
 Since assembly isn't object-oriented, objects do not exist in assembly. This means that a string doesn't exist in assembly either. In assembly, I had to make an array of word-sized integers and loop over that array to print a string. In my opinion this is too much work to print a string. I prefer Java to assembly in this case.
 
-(Un)strucutered. Assembly is unstructured, Java is structured. Unstructured means that the code cannot be clearly separated in different modules (C. A. Hofeditz, 1985). I prefer Java in this case because it makes me able to structure my code better thus make it more readable and maintainable. 
+(Un)strucutered. Assembly is unstructured, Java is structured. Unstructured means that the code cannot be separated into different modules (C. A. Hofeditz, 1985). I prefer Java in this case because it makes me able to structure my code better thus making it more readable and maintainable. 
 
-Portability. Assembler is platform specific (Agner, F. 2020). The insertion sort code doesn't work on a Raspberry Pi because the Raspberry Pi instruction set is different compared to the x64 instruction set. This is a downside in my opinion. If I write code I want to run it everywhere and not rewrite code for different hardware. I prefer Java to assembly in this case.
+Portability. Assembler is platform-specific (Agner, F. 2020). The insertion sort code doesn't work on a Raspberry Pi because the Raspberry Pi instruction set is different compared to the x64 instruction set. This is a downside in my opinion. If I write code I want to run it everywhere and not rewrite code for different hardware. I prefer Java to assembly in this case.
 
-Error protection. High-level languages like Java protect the programmer against errors. When I was writing the code for quicksort, I tried to pop an empty stack. Java would've thrown a runtime exception. Assembly didn't throw anything; it put a random(?) number in the register I popped into. In this case i prefer Java because it protects me more from errors than assembly.
+Error protection. High-level languages like Java protect the programmer against errors. When I was writing the code for quicksort, I tried to pop an empty stack. Java would've thrown a runtime exception. Assembly didn't throw anything; it put a random(?) number in the register I popped into. In this case, I prefer Java because it protects me more from errors than assembly.
 
-Development time. Writing code in assembly takes much longer than in a high-level language (Fog, A. 2020). It took me a few hours to implement insertion sort in assembly. In Java, I did it in less then an hour. In this case I prefer Java because Java allows me to write more code (that functions) in less time.
+Development time. Writing code in assembly takes much longer than in a high-level language (Fog, A. 2020). It took me a few hours to implement insertion sort in assembly. In Java, I did it in less than an hour. In this case I prefer Java because Java allows me to write more code (that functions) in less time.
 
 Syntax. Not a lot of explanation needed. I prefer assembly syntax. It's simpler and cleaner looking than Java.
 
 Program Flow. Assembly code gets executed from top to bottom. If the bottom is reached, it will stop executing the program. The control flow in assembly can be changed using jumps and subroutine calls. In Java the code will also execute from top to bottom automatically. Also, when I call a method Java will only execute that method and return to what code called that method, it doesn't execute the next method when I don't explicitly state that the method should return. I prefer Java, I have to think less about the program flow and this makes me able to focus more on the code its functionality.
 
-The stack. In assembly, I have direct access to the stack. I actually liked this a lot about assembly. In Java, I have to manually make a temporary variable (or import the stack library or something) but in assembly the stack was already there, so I didn't have to manually make a structure to save values. In my opinion Java should also implement a structure where I can use the stack directly without importing and declaring the stack.
+The stack. In assembly, I have direct access to the stack. I liked this a lot about assembly. In Java, I have to manually make a temporary variable (or import the stack library or something) but in assembly the stack was already there, so I didn't have to manually make a structure to save values. In my opinion Java should also implement a structure where I can use the stack directly without importing and declaring the stack.
 
 Scoping. Assembly doesn't support scoping; there is only one scope and that is the global scope. I prefer Java. I can reuse commonly used variables (like *i* in for loops) and having a local scope reduces bugs (P.W. Homer, 2005).
 
-Generation. Assembly is typed as a second type generation programming language. Java is typed as a third type generation programming language. Second-generation languages are abstracted machine code, such as assembly language, that are tied to a specific system architecture but are human-readable and need to be compiled. Third-generation programming languages decouple code from the processor, allowing for the development of code that used more readable statements (Eugene, P., Angela B, 2020). Like I said before, I want my code to run everywhere without rewriting it for different hardware. I prefer third generation languages over second-generation languages.
+Generation. Assembly is typed as a second type generation programming language. Java is typed as a third type generation programming language. Second-generation languages are abstracted machine code, such as assembly language, that are tied to a specific system architecture but are human-readable and need to be compiled. Third-generation programming languages decouple code from the processor, allowing for the development of code that used more readable statements (Eugene, P., Angela B, 2020). Like I said before, I want my code to run everywhere without rewriting it for different hardware. I prefer a third-generation language over a second-generation language.
 
-Fun. During the time I was writing assembly code I actually had a lot of fun. I tried certain optimizations like shifting instead of dividing. Java is also fun but in a different way. In Java, I optimize my code by making it as maintainable and readable as possible. In assembly, I tried to make my code as fast as possible. An example for this is using bit shifts instead of multiplying or dividing (Agner, F. 2020). 
+Fun. During the time I was writing assembly code I had a lot of fun. I tried certain optimizations like shifting instead of dividing. Java is also fun but in a different way. In Java, I optimize my code by making it as maintainable and readable as possible. In assembly, I tried to make my code as fast as possible. An example of this is using bit shifts instead of multiplying or dividing (Agner, F. 2020). 
+ 
 
 # Sources
 References to sources is in the Dutch way. 
