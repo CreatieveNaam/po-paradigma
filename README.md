@@ -70,7 +70,7 @@ The `_start:` label is essential for all programs. When the program is compiled 
 ## Global
 So what does the code `global _start` mean?
 
-The word `global` is used when we want the linker to be able to know the address of some label. The object file generated during compiling will contain a link to every label declared `global`. In this case, we have to declare `_start` as global since it is required for the code to be properly  linked.
+The word `global` is used when we want the linker to be able to know the address of some label. The object file generated during compiling will contain a link to every label declared `global`. In this case, we have to declare `_start` as global since it is required for the code to be properly linked.
  
  ## Registers
 To understand the rest of the code, we first need to understand registers. Registers are a part of the processor that temporarily holds memory. In the x86_64 architecture, registers hold 64 bits. Below is a list of registers in the x86_64 architecture. 
@@ -111,9 +111,9 @@ ID | rax
 5 | r8
 6 | r9
 
-What we see in the table is that the ID of the syscall is stored in the rax register. The first argument in the rdi register and so on. So when you want to use a syscall you first need to store the ID value of the syscall in the rax register, the value of the first argument in the rdi register and so on. [This](http://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/) table shows all syscall for the x64 instruction set and which value should be stored in which register.
+What we see in the table is that the ID of the syscall is stored in the rax register. The first argument in the rdi register and so on. So when we want to use a syscall, we first need to store the ID value of the syscall in the rax register, the value of the first argument in the rdi register and so on. [This](http://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/) table shows all syscall for the x64 instruction set and which value should be stored in which register.
 
-Let's use sys_write as example. We want to write "Hello, World!\n" to the screen. If we look at the syscall table we see that the ID associated with sys_write is 1. So we want to store 1 in the rax register. We do this using the following command: `mov rax, 1`. We need to store the file descriptor in the rdi register. There are three file descriptors:
+Let's use sys_write as an example. We want to write "Hello, World!\n" to the screen. If we look at the syscall table we see that the ID associated with sys_write is 1. So we want to store 1 in the rax register. We do this using the following command: `mov rax, 1`. We need to store the file descriptor in the rdi register. There are three file descriptors:
 
 description | number 
 --- | ---
