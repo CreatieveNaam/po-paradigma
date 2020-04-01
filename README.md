@@ -265,7 +265,7 @@ The video tutorial doesn't teach the use of arrays but I think it's crucial to u
 I noticed it became very difficult to debug my code, so I changed my IDE from nano to SASM. Instead of `global _start` SASM needs a `global _main`. So from now on, I will use main instead of start.
 
 # Change of challenge
-I'm going to be honest here. I lied. My challenge was actually implementing quicksort instead of insertion sort. However, during the implementation of arrays I noticed I struggeld a lot with basic assembly like printing all elements of an array. So I decided to make my challenge easier. This would give me more time to focus on the basics of assembly before moving on to the harder parts (like recursion). 
+I'm going to be honest here, I lied. My challenge was actually implementing quicksort instead of insertion sort. However, during the implementation of arrays I noticed I struggeld a lot with basic assembly like printing all elements of an array. So I decided to make my challenge easier. This would give me more time to focus on the basics of assembly before moving on to the harder parts (like recursion). 
 
 # Insertion sort
 My challenge was to implement insertion sort in assembly. Well, I did it. Insertion sort in assembly can be found [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/insertionsort.asm). The code should be readable with the explanation I previously gave and the comments.
@@ -273,9 +273,9 @@ My challenge was to implement insertion sort in assembly. Well, I did it. Insert
 The way I programmed insertion sort was to use a correct insertion sort in Java as an example and program each line of code in assembly. This made it easier for me to write assembly code since it made me clear what I needed to do. I used [this](https://www.geeksforgeeks.org/insertion-sort/) implementation of insertion sort as an example. 
 
 # Quicksort
-While quicksort was a bit harder than insertion sort, I managed to implement quicksort in assembly. The code can be found [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/quicksort.asm). I used the same plan as the plan I had for insertion sort.
+After implementing insertion sort in assembly I felt my programming power grow over 9000 and decided I could use another challenge. I decided the implement quicksort in assembly since that was my original challenge after all. While quicksort was a bit harder than insertion sort, I managed to implement quicksort in assembly. The code can be found [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/quicksort.asm). I used the same plan as the plan I had for insertion sort.
 
-# Differences Java and Assembly
+# Differences Java and Assembly and my opinion on those differences
 During the process of learning assembly I noticed a fair number of differences between Java and assembly x64. In this chapter I will list these differences and give my opinion on them. I will also list differences I didn't notice but are present.
 
 Type. Assembly is an untyped language (University of Debrecen, z.d.). In the case of assembly, this means that all values are represented as word-sized integers (Morrisett, G., Walker, D, Crary, K., Glew, N, 1999). Java is a static, manifestly typed language (University of Debrecen, z.d.). This means I have to explicitly declare a variable type during development time. I have to say I liked the untyped system of assembly. I could put any value I wanted in every register. This makes it easier to write code faster. However, since assembly is untyped, I can also multiply a string by 2 which shouldn't be possible in my opinion. So I like the untyped property of assembly, but I think it will lead to a lot of unexpected behavior.
