@@ -265,7 +265,36 @@ The video tutorial doesn't teach the use of arrays but I think it's crucial to u
 I noticed it became very difficult to debug my code, so I changed my IDE from nano to SASM. Instead of `global _start` SASM needs a `global _main`. So from now on, I will use main instead of start.
 
 # Change of challenge
-I'm going to be honest here, I lied. My challenge was actually implementing quicksort instead of insertion sort. However, during the implementation of arrays I noticed I struggled a lot with basic assembly like printing all elements of an array. So I decided to make my challenge easier. This would give me more time to focus on the basics of assembly before moving on to the harder parts (like recursion).
+I'm going to be honest here; I lied. My challenge was actually implementing quicksort instead of insertion sort. However, during the implementation of arrays, I noticed I struggled a lot with basic assembly like printing all elements of an array.
+
+The thing I struggled the most with was finding the next element of an array. The code for finding the next element is something like this:
+
+```
+add rax, 8
+```
+
+However, I don't understand why this is the case. To be able to focus more on basic assembly like finding the next element of an array I decided to make my challenge a little easier. Instead of implementing quicksort I am going to implement insertion sort.
+
+# Arrays explanation
+This chapter will explain why code like 'add rax, 8' will point to the next element of an array. First we have to establish some rules:
+- Each character is the array is a quad word. This means that each character is 8 bytes in size.
+- rsi is the register with the pointer to the array.
+
+So the way things work is that rsi points to the beginning of the array. For simplicity’s sake, let's say the memory address rsi points to is 0. We know that each character is 8 bytes in size. This means that the second element of the array can be found at memory address 8, the third at 16, etc. Let's say we have the following code: 'mov rsi, arr', in this case rsi points to the beginning of the array. When we want to get the next element of the array, we have to point to the next memory address, like the following code.
+```
+mov rsi, arr ; Move arr into rsi
+mov rax, 8
+mov rdx, [rsi + rax] ; Memory address 0 (rsi register) + 8 (rax register)
+```
+The register rdx has the second value of the array. Now if we add another 8 to the rax register we point to the third element of the array.
+```
+mov rsi, arr ; Move arr into rsi
+mov rax, 8
+mov rdx, [rsi + rax] ; Second element
+add rax, 8
+mov rdx, [rsi + rax] ; Third element
+```
+Now that I understand this part, I can start implementing insertion sort!
 
 # Insertion sort
 My challenge was to implement insertion sort in assembly. Well, I did it. Insertion sort in assembly can be found [here](https://github.com/CreatieveNaam/po-paradigma/blob/master/code/insertionsort.asm). The code should be readable with the explanation I previously gave and the comments.
